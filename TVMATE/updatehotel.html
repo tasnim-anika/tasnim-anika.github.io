@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Update Place Entry</title>
+        <link rel="icon" href="logo.png">
+        <link rel="stylesheet" type="text/css" href="styleplace.css">
+    </head>
+    <Body>
+
+            
+        <div class="place-page">
+<div class="form">
+    <form class="register-form" onsubmit="validateForm()">
+        
+       <input type="text" id="firebase_id" placeholder="firebase_ID"/> 
+        <input type="text" id="hotel_id" placeholder="Hotel_ID"/>
+        <input type="text" id="place_id" placeholder="Place_ID"/>
+        <input type="text" id="res_id" placeholder="Res_ID"/>
+        <input type="text" id="hotel_name"  placeholder="Hotel_Name"/>
+        <input type="text" id="hotel_division" placeholder="Division"/>
+        <input type="text" id="adress" placeholder="Address"/>
+        <input type="text" id="description" placeholder="Description"/>
+        <input type="text" id="hotel_rating" placeholder="Rating"/>
+        <input type="text" id="longitude" placeholder="Longitude"/>
+        <input type="text" id="lattitude" placeholder="Lattitude"/>
+        <input type="text" id="image" placeholder="Image_Url"/>
+        <button type="button" id="button" onclick="update_user();"> Update </button>
+    </form>
+</div>
+
+        </div>
+
+
+            
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDm4SfNvJ-Gtw_yjNsvRsR76kJKWwULHU0",
+    authDomain: "travelmate-3c5c7.firebaseapp.com",
+    databaseURL: "https://travelmate-3c5c7.firebaseio.com",
+    projectId: "travelmate-3c5c7",
+    storageBucket: "travelmate-3c5c7.appspot.com",
+    messagingSenderId: "756626368492"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+
+function update_user(){
+  var firebase_id=document.getElementById("firebase_id").value;
+  var Hotel_id=document.getElementById("hotel_id").value;
+    var Place_id=document.getElementById("place_id").value;
+    var Hotel_name=document.getElementById("hotel_name").value;
+    var Hotel_div=document.getElementById("hotel_division").value;
+    var Hotel_desc=document.getElementById("description").value;
+    var Hotel_long=document.getElementById("longitude").value;
+    var Hotel_latt=document.getElementById("lattitude").value;
+    var Hotel_add=document.getElementById("adress").value;
+    var Hotel_resId=document.getElementById("res_id").value;
+    var Hotel_image=document.getElementById("image").value;
+    var Hotel_rating=document.getElementById("hotel_rating").value;
+
+   var data = {
+       hotel_id:Hotel_id,
+        id:Place_id,
+        res_id:Hotel_resId,
+        hotel_name:Hotel_name,
+        address:Hotel_add,
+        description:Hotel_desc,
+        division:Hotel_div,
+        rating:Hotel_rating,
+        lattitude:Hotel_latt,
+        longitude: Hotel_long,
+        image:Hotel_image
+   }
+   
+   var updates = {};
+   updates['/Hotel/' + firebase_id] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The Hotel is updated successfully!');
+   
+   
+  }
+
+
+</script>
+    
+</Body>
+</html>

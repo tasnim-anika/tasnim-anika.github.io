@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Update Place Entry</title>
+        <link rel="icon" href="logo.png">
+        <link rel="stylesheet" type="text/css" href="styleplace.css">
+    </head>
+    <Body>
+
+            
+        <div class="place-page">
+<div class="form">
+    <form class="register-form" onsubmit="validateForm()">
+        
+         <input type="text" id="firebase_id" placeholder="firebase_ID"/>  
+        <input type="text" id="id" placeholder="Place_ID"/>
+        <input type="text" id="name" placeholder="Place_Name"/>
+        <input type="text" id="division"  placeholder="Division"/>
+        <input type="text" id="des" placeholder="Description"/>
+        <input type="text" id="longittude" placeholder="Longitude"/>
+        <input type="text" id="lattitude" placeholder="Lattitude"/>
+        <input type="text" id="imageUrl" placeholder="Image_Url"/>
+        <button type="button" id="button" onclick="update_user();"> Update </button>
+    </form>
+</div>
+
+        </div>
+
+
+            
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDm4SfNvJ-Gtw_yjNsvRsR76kJKWwULHU0",
+    authDomain: "travelmate-3c5c7.firebaseapp.com",
+    databaseURL: "https://travelmate-3c5c7.firebaseio.com",
+    projectId: "travelmate-3c5c7",
+    storageBucket: "travelmate-3c5c7.appspot.com",
+    messagingSenderId: "756626368492"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+
+function update_user(){
+  var firebase_id=document.getElementById("firebase_id").value;
+  var id=document.getElementById("id").value;
+    var place_name=document.getElementById("name").value;
+    var place_div=document.getElementById("division").value;
+    var place_desc=document.getElementById("des").value;
+    var place_long=document.getElementById("longittude").value;
+    var place_latt=document.getElementById("lattitude").value;
+    var place_image=document.getElementById("imageUrl").value;
+
+   var data = {
+        id:id,
+        description:place_desc,
+        division:place_div,
+        image:place_image,
+        lattitude:place_latt,
+        longitude: place_long,
+        place_name:place_name
+   }
+   
+   var updates = {};
+   updates['/Place/' + firebase_id] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The Place is updated successfully!');
+   
+  
+  }
+
+
+</script>
+    
+</Body>
+</html>

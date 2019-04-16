@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Place Entry</title>
+        <link rel="icon" href="logo.png">
+        <link rel="stylesheet" type="text/css" href="styleplace.css">
+    </head>
+    <Body>
+
+            
+        <div class="place-page">
+<div class="form">
+    <form class="register-form" onsubmit="validateForm()">
+        
+           
+        <input type="text" id="id" placeholder="Place_ID"/>
+        <input type="text" id="name" placeholder="Place_Name"/>
+        <input type="text" id="division"  placeholder="Division"/>
+        <input type="text" id="des" placeholder="Description"/>
+        <input type="text" id="longittude" placeholder="Longitude"/>
+        <input type="text" id="lattitude" placeholder="Lattitude"/>
+        <input type="text" id="imageUrl" placeholder="Image_Url"/>
+        <button type="button" id="button" onclick="submition()">Submit </button>
+    </form>
+</div>
+
+        </div>
+
+
+            
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDm4SfNvJ-Gtw_yjNsvRsR76kJKWwULHU0",
+    authDomain: "travelmate-3c5c7.firebaseapp.com",
+    databaseURL: "https://travelmate-3c5c7.firebaseio.com",
+    projectId: "travelmate-3c5c7",
+    storageBucket: "travelmate-3c5c7.appspot.com",
+    messagingSenderId: "756626368492"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript" src="code.js"></script>
+    
+</Body>
+</html>

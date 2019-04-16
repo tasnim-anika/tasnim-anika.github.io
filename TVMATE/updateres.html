@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Update Restaurant Entry</title>
+        <link rel="icon" href="logo.png">
+        <link rel="stylesheet" type="text/css" href="styleplace.css">
+    </head>
+    <Body>
+
+            
+        <div class="place-page">
+<div class="form">
+    <form class="register-form" onsubmit="validateForm()">
+        
+         <input type="text" id="firebase_id" placeholder="firebase_ID"/> 
+         <input type="text" id="resid"placeholder="Res_ID"/>
+        <input type="text" id="placeid"placeholder="Place_ID"/>
+        <input type="text"  id="name" placeholder="Restaurant_Name"/>
+        <input type="text"   id="division" placeholder="Division"/>
+        <input type="text"   id="rating" placeholder="Ratings"/>
+        <input type="text"   id="longitude" placeholder="Longitude"/>
+        <input type="text"    id="lattitude" placeholder="Lattitude"/>
+        <input type="text"     id="image" placeholder="Image_Url"/>
+        <button type="button" id="button" onclick="update_user();"> Update </button>
+    </form>
+</div>
+
+        </div>
+
+
+            
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDm4SfNvJ-Gtw_yjNsvRsR76kJKWwULHU0",
+    authDomain: "travelmate-3c5c7.firebaseapp.com",
+    databaseURL: "https://travelmate-3c5c7.firebaseio.com",
+    projectId: "travelmate-3c5c7",
+    storageBucket: "travelmate-3c5c7.appspot.com",
+    messagingSenderId: "756626368492"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+
+function update_user(){
+     var firebase_id=document.getElementById("firebase_id").value;
+   var Restaurant_id=document.getElementById("resid").value;
+    var Place_id=document.getElementById("placeid").value;
+    var Restaurant_name=document.getElementById("name").value;
+    var Restaurant_rating=document.getElementById("rating").value;
+    var Restaurant_div=document.getElementById("division").value;
+    var longitude=document.getElementById("longitude").value;
+    var lattitude=document.getElementById("lattitude").value;
+    var Restaurant_image=document.getElementById("image").value;
+
+   var data = {
+       res_id:Restaurant_id,
+        id:Place_id,
+        res_name:Restaurant_name,
+        rating:Restaurant_rating,
+        division:Restaurant_div,
+        lattitude:lattitude,
+        longitude: longitude,
+        image:Restaurant_image
+   }
+   
+   var updates = {};
+   updates['/Restaurant/' + firebase_id] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The Restaurant is updated successfully!');
+   
+   
+  }
+
+
+</script>
+    
+</Body>
+</html>

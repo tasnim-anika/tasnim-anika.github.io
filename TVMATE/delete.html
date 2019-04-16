@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title>Delete Entry</title>
+        <link rel="icon" href="logo.png">
+        <link rel="stylesheet" type="text/css" href="delete.css">
+    </head>
+    <Body>
+
+            
+        <div class="place-page">
+<div class="form">
+    <form class="register-form" onsubmit="validateForm()">
+    <h1>Enter The key value you want to delete</h1>
+        
+         <input type="text" id="firebase_id" placeholder="firebase_ID"/>  
+         <label class="container">Delete From Place
+  <input type="radio" id="place" checked="checked" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Delete From Restaurant
+  <input type="radio" id="restaurant" name="radio">
+  <span class="checkmark"></span>
+</label>
+<label class="container">Delete From Hotel
+  <input type="radio" id="hotel" name="radio">
+  <span class="checkmark"></span>
+</label>
+        
+        <button type="button" id="button" onclick="delete_user();"> Delete </button>
+        
+    </form>
+</div>
+
+        </div>
+
+
+            
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDm4SfNvJ-Gtw_yjNsvRsR76kJKWwULHU0",
+    authDomain: "travelmate-3c5c7.firebaseapp.com",
+    databaseURL: "https://travelmate-3c5c7.firebaseio.com",
+    projectId: "travelmate-3c5c7",
+    storageBucket: "travelmate-3c5c7.appspot.com",
+    messagingSenderId: "756626368492"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+ 
+
+function delete_user(){
+
+    placebtn=document.getElementById("place");
+    resbtn=document.getElementById("restaurant");
+    hotelbtn=document.getElementById("hotel");
+
+    
+    if(placebtn.checked){
+    var firebase_id=document.getElementById("firebase_id").value;
+   
+  
+   firebase.database().ref().child('/Place/' + firebase_id).remove();
+   alert('The Place is deleted successfully!');
+    }
+    else if(resbtn.checked){
+    var firebase_id=document.getElementById("firebase_id").value;
+   
+  
+   firebase.database().ref().child('/Restaurant/' + firebase_id).remove();
+   alert('The Restaurant is deleted successfully!');
+    }
+    else if(hotelbtn.checked){
+    var firebase_id=document.getElementById("firebase_id").value;
+   
+  
+   firebase.database().ref().child('/Hotel/' + firebase_id).remove();
+   alert('The Hotel is deleted successfully!');
+    }
+    else
+    {
+         alert('Nothing Selected!');
+    }
+  
+  }
+  
+  
+  
+
+</script>
+    
+</Body>
+</html>
